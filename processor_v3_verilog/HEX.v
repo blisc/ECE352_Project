@@ -26,34 +26,51 @@
 //
 // ---------------------------------------------------------------------
 
+//module chooseHEXs
+//(
+//in0, in1, in2, in3,
+//select, out1, out0
+//);
+//input 	[7:0] in0, in1, in2, in3;
+//input	[1:0] select;
+//output 	[6:0] out0, out1;
+//
+//reg		[7:0] temp_in;
+//
+//always@(*)
+//begin
+//	if( select == 0 )
+//		temp_in = in0;
+//	else if( select == 1 )
+//		temp_in = in1;
+//	else if( select == 2 )
+//		temp_in = in2;
+//	else if( select == 3 )
+//		temp_in = in3;
+//	else
+//		temp_in = in0;
+//end
+
 module chooseHEXs
 (
 in0, in1, in2, in3,
 select, out1, out0
 );
 input 	[7:0] in0, in1, in2, in3;
-input	[1:0] select;
-output 	[6:0] out0, out1;
-
-reg		[7:0] temp_in;
+input				select;
+output reg	[7:0] out0, out1;
 
 always@(*)
 begin
-	if( select == 0 )
-		temp_in = in0;
-	else if( select == 1 )
-		temp_in = in1;
-	else if( select == 2 )
-		temp_in = in2;
-	else if( select == 3 )
-		temp_in = in3;
-	else
-		temp_in = in0;
+	if( ~select ) begin
+		out0 = in0;
+		out1 = in1;
+	end
+	else begin
+		out0 = in2;
+		out1 = in3;
+	end
 end
-
-HEX hex0 ( temp_in[7:4], out1 );
-HEX hex1 ( temp_in[3:0], out0 );
-
 endmodule
 
 module HEXs

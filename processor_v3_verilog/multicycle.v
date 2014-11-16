@@ -31,7 +31,8 @@ HEX4, HEX5, HEX6, HEX7, LEDG, LEDR
 );
 
 // ------------------------ PORT declaration ------------------------ //
-input	[1:0] KEY, SW;
+input	[1:0] KEY;
+input [2:0] SW;
 output	[6:0] HEX0, HEX1, HEX2, HEX3;
 output	[6:0] HEX4, HEX5, HEX6, HEX7;
 output	[7:0] LEDG;
@@ -49,6 +50,9 @@ wire	[7:0] constant;
 wire	[2:0] ALUOp, ALU2;
 wire	[1:0] R1_in;
 wire	Nwire, Zwire;
+wire	[15:0] InstrCount;
+wire	IncCount;
+wire	[7:0] disp0, disp1, disp2, disp3;
 reg		N, Z;
 
 // ------------------------ Input Assignment ------------------------ //
@@ -57,8 +61,12 @@ assign	reset =  ~KEY[0]; // KEY is active high
 
 
 // ------------------- DE2 compatible HEX display ------------------- //
+chooseHEXs	Hex_switch(
+	.in0(reg2),.in1(reg3),.in2(InstrCount[7:0]),.in3(InstrCount[15:8]),
+	.out0(disp0),.out1(disp1),.select(SW[2])
+);
 HEXs	HEX_display(
-	.in0(reg0),.in1(reg1),.in2(reg2),.in3(reg3),
+	.in0(reg0),.in1(reg1),.in2(disp0),.in3(disp1),
 	.out0(HEX0),.out1(HEX1),.out2(HEX2),.out3(HEX3),
 	.out4(HEX4),.out5(HEX5),.out6(HEX6),.out7(HEX7)
 );
@@ -85,7 +93,7 @@ FSM		Control(
 	.PCwrite(PCWrite),.AddrSel(AddrSel),.MemRead(MemRead),.MemWrite(MemWrite),
 	.IRload(IRLoad),.R1Sel(R1Sel),.MDRload(MDRLoad),.R1R2Load(R1R2Load),
 	.ALU1(ALU1),.ALUOutWrite(ALUOutWrite),.RFWrite(RFWrite),.RegIn(RegIn),
-	.FlagWrite(FlagWrite),.ALU2(ALU2),.ALUop(ALUOp)
+	.FlagWrite(FlagWrite),.ALU2(ALU2),.ALUop(ALUOp),.IncCount(IncCount)
 );
 
 memory	DataMem(
@@ -158,6 +166,9 @@ mux2to1_8bit 		ALU1_mux(
 mux5to1_8bit 		ALU2_mux(
 	.data0x(R2wire),.data1x(constant),.data2x(SE4wire),
 	.data3x(ZE5wire),.data4x(ZE3wire),.sel(ALU2),.result(ALU2wire)
+);
+counter		Cycle_Counter(
+	.reset(reset),.clock(clock),.enable(IncCount),.count(InstrCount)
 );
 
 sExtend		SE4(.in(IR[7:4]),.out(SE4wire));
