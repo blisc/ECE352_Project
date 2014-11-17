@@ -111,7 +111,7 @@ ALUOutWrite, RFWrite, RegIn, FlagWrite, IncCount//, state
 					RFWrite = 0;
 					RegIn = 0;
 					FlagWrite = 0;
-					IncCount = 0;
+					IncCount = 1;
 				end					
 			c1: 		//control = 19'b1110100000010000000;
 				begin

@@ -42,9 +42,10 @@ output	[17:0] LEDR;
 wire	clock, reset;
 wire	IRLoad, MDRLoad, MemRead, MemWrite, PCWrite, RegIn, AddrSel;
 wire	ALU1, ALUOutWrite, FlagWrite, R1R2Load, R1Sel, RFWrite;
-wire	[7:0] R2wire, PCwire, R1wire, RFout1wire, RFout2wire;
+wire	[7:0] R2wire, R1wire, RFout1wire, RFout2wire;
 wire	[7:0] ALU1wire, ALU2wire, ALUwire, ALUOut, MDRwire, MEMwire;
-wire	[7:0] IR, SE4wire, ZE5wire, ZE3wire, AddrWire, RegWire;
+wire	[7:0] PCwire, INSTRwire;
+wire	[7:0] IR, SE4wire, ZE5wire, ZE3wire, RegWire; //, AddrWire
 wire	[7:0] reg0, reg1, reg2, reg3;
 wire	[7:0] constant;
 wire	[2:0] ALUOp, ALU2;
@@ -66,7 +67,7 @@ chooseHEXs	Hex_switch(
 	.out0(disp0),.out1(disp1),.select(SW[2])
 );
 HEXs	HEX_display(
-	.in0(reg0),.in1(reg1),.in2(disp0),.in3(disp1),
+	.in0(reg0),.in1(reg1),.in2(disp1),.in3(disp0),
 	.out0(HEX0),.out1(HEX1),.out2(HEX2),.out3(HEX3),
 	.out4(HEX4),.out5(HEX5),.out6(HEX6),.out7(HEX7)
 );
@@ -98,7 +99,7 @@ FSM		Control(
 
 memory	DataMem(
 	.MemRead(MemRead),.wren(MemWrite),.clock(clock),
-	.address(AddrWire),.data(R1wire),.q(MEMwire)
+	.address(R2wire),.data(R1wire),.q(MEMwire),.address_pc(PCwire),.q_pc(INSTRwire)
 );
 
 ALU		ALU(
@@ -115,7 +116,7 @@ RF		RF_block(
 
 register_8bit	IR_reg(
 	.clock(clock),.aclr(reset),.enable(IRLoad),
-	.data(MEMwire),.q(IR)
+	.data(INSTRwire),.q(IR)
 );
 
 register_8bit	MDR_reg(
@@ -148,10 +149,10 @@ mux2to1_2bit		R1Sel_mux(
 	.sel(R1Sel),.result(R1_in)
 );
 
-mux2to1_8bit 		AddrSel_mux(
-	.data0x(R2wire),.data1x(PCwire),
-	.sel(AddrSel),.result(AddrWire)
-);
+//mux2to1_8bit 		AddrSel_mux(
+//	.data0x(R2wire),.data1x(PCwire),
+//	.sel(AddrSel),.result(AddrWire)
+//);
 
 mux2to1_8bit 		RegMux(
 	.data0x(ALUOut),.data1x(MDRwire),
