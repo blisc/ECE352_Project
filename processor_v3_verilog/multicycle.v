@@ -63,7 +63,7 @@ assign	reset =  ~KEY[0]; // KEY is active high
 
 // ------------------- DE2 compatible HEX display ------------------- //
 chooseHEXs	Hex_switch(
-	.in0(reg2),.in1(reg3),.in2(InstrCount[7:0]),.in3(InstrCount[15:8]),
+	.in0(reg3),.in1(reg2),.in2(InstrCount[7:0]),.in3(InstrCount[15:8]),
 	.out0(disp0),.out1(disp1),.select(SW[2])
 );
 HEXs	HEX_display(
@@ -89,7 +89,7 @@ assign HEX7 = 7'b1111111;
 // ----------------- END DE1 compatible HEX display ----------------- //
 */
 
-FSM		Control(
+FSM		Control(//Need to change a shit ton of shit here now and not FSM anymore
 	.reset(reset),.clock(clock),.N(N),.Z(Z),.instr(IR[3:0]),
 	.PCwrite(PCWrite),.AddrSel(AddrSel),.MemRead(MemRead),.MemWrite(MemWrite),
 	.IRload(IRLoad),.R1Sel(R1Sel),.MDRload(MDRLoad),.R1R2Load(R1R2Load),
@@ -109,24 +109,48 @@ ALU		ALU(
 
 RF		RF_block(
 	.clock(clock),.reset(reset),.RFWrite(RFWrite),
-	.dataw(RegWire),.reg1(R1_in),.reg2(IR[5:4]),
+	.dataw(WBwire),.reg1(R1_in),.reg2(IR[5:4]),
 	.regw(R1_in),.data1(RFout1wire),.data2(RFout2wire),
 	.r0(reg0),.r1(reg1),.r2(reg2),.r3(reg3)
 );
 
-register_8bit	IR_reg(
+register_8bit	IR1_reg(
 	.clock(clock),.aclr(reset),.enable(IRLoad),
 	.data(INSTRwire),.q(IR)
 );
 
-register_8bit	MDR_reg(
-	.clock(clock),.aclr(reset),.enable(MDRLoad),
-	.data(MEMwire),.q(MDRwire)
+//register_8bit	IR2_reg(
+//	.clock(clock),.aclr(reset),.enable(IR2Load), //Remember to make new wires for this shit
+//	.data(IR),.q(IR2)
+//);
+
+register_8bit	IR3_reg(
+	.clock(clock),.aclr(reset),.enable(IR3Load), //Remember to make new wires for this shit
+	.data(IR),.q(IR3)
 );
 
+register_8bit	IR4_reg(
+	.clock(clock),.aclr(reset),.enable(IR4Load), //Remember to make new wires for this shit
+	.data(IR3),.q(IR4)
+);
+
+//register_8bit	MDR_reg(
+//	.clock(clock),.aclr(reset),.enable(MDRLoad),
+//	.data(MEMwire),.q(MDRwire)
+//);
+
 register_8bit	PC(
-	.clock(clock),.aclr(reset),.enable(PCWrite),
-	.data(ALUwire),.q(PCwire)
+	.clock(clock),.aclr(reset),.enable(PCWrite), //Remember some shit over here too
+	.data(PCdat),.q(PCwire)
+);
+
+adder PC_inc(
+	.A(PCwire),.B(constant),.out(PC_INCwire) //Remember this shit, right here
+);
+
+mux2to1_8bit PC_Sel(
+	.data0x(ALUwire),.data1x(PC_INCwire), ///////////////////////
+	.sel(PCsel),.result(PCdat)
 );
 
 register_8bit	R1(
@@ -139,9 +163,14 @@ register_8bit	R2(
 	.data(RFout2wire),.q(R2wire)
 );
 
-register_8bit	ALUOut_reg(
-	.clock(clock),.aclr(reset),.enable(ALUOutWrite),
-	.data(ALUwire),.q(ALUOut)
+mux2to1_8bit	ALUOutSel(
+	.data0x(ALUwire),.data1x(MEMwire),
+	.sel(ALU3),.result(WBin)	//Shit here too motherfucker
+);
+
+register_8bit	WB_reg(
+	.clock(clock),.aclr(reset),.enable(WBenable), //Rem some shit here
+	.data(WBin),.q(WBwire)
 );
 
 mux2to1_2bit		R1Sel_mux(
@@ -154,10 +183,10 @@ mux2to1_2bit		R1Sel_mux(
 //	.sel(AddrSel),.result(AddrWire)
 //);
 
-mux2to1_8bit 		RegMux(
-	.data0x(ALUOut),.data1x(MDRwire),
-	.sel(RegIn),.result(RegWire)
-);
+//mux2to1_8bit 		RegMux(
+//	.data0x(ALUOut),.data1x(MDRwire),
+//	.sel(RegIn),.result(RegWire)
+//);
 
 mux2to1_8bit 		ALU1_mux(
 	.data0x(PCwire),.data1x(R1wire),
