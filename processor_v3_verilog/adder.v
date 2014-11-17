@@ -1,0 +1,7 @@
+module	adder(A, B, out);
+
+input [7:0] A, B;
+output [7:0] out;
+assign out = A + B;
+
+endmodule

@@ -1,0 +1,23 @@
+module control(
+reset, IR, IR3, IR4, clock,
+N, Z,
+PCwrite, PCsel, MemRead,
+MemWrite, IRload, IR3load, IR4load, 
+R1Sel,
+R1R2Load, ALU1, ALU2, ALUop,
+ALUOutWrite, RFWrite, RegIn, FlagWrite, IncCount//, state
+);
+	input	[3:0] instr;
+	input	N, Z;
+	input	reset, clock;
+	output	PCwrite, AddrSel, MemRead, MemWrite, IRload, R1Sel, MDRload;
+	output	R1R2Load, ALU1, ALUOutWrite, RFWrite, RegIn, FlagWrite;
+	output	IncCount; //Counter increment
+	output	[2:0] ALU2, ALUop;
+	//output	[3:0] state;
+	
+	reg [4:0]	state; //5 bit state to accomodate stop command
+	reg	PCwrite, AddrSel, MemRead, MemWrite, IRload, R1Sel, MDRload;
+	reg	R1R2Load, ALU1, ALUOutWrite, RFWrite, RegIn, FlagWrite;
+	reg	IncCount; //Counter increment registerization
+	reg	[2:0] ALU2, ALUop;
