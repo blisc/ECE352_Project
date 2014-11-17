@@ -1,5 +1,19 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate /multicycle_tb/HEX0
+add wave -noupdate /multicycle_tb/HEX1
+add wave -noupdate /multicycle_tb/HEX2
+add wave -noupdate /multicycle_tb/HEX3
+add wave -noupdate /multicycle_tb/HEX4
+add wave -noupdate /multicycle_tb/HEX5
+add wave -noupdate /multicycle_tb/HEX6
+add wave -noupdate /multicycle_tb/HEX7
+add wave -noupdate /multicycle_tb/LEDG
+add wave -noupdate /multicycle_tb/LEDR
+add wave -noupdate /multicycle_tb/KEY
+add wave -noupdate /multicycle_tb/SW
+add wave -noupdate /multicycle_tb/reset
+add wave -noupdate /multicycle_tb/clock
 add wave -noupdate /multicycle_tb/reset
 add wave -noupdate /multicycle_tb/clock
 add wave -noupdate -divider {Hex Display}
@@ -21,8 +35,13 @@ add wave -noupdate /multicycle_tb/HEX4
 add wave -noupdate /multicycle_tb/HEX5
 add wave -noupdate /multicycle_tb/HEX6
 add wave -noupdate /multicycle_tb/HEX7
+add wave -noupdate -divider {Memory Output}
+add wave -noupdate /multicycle_tb/DUT/MEMwire
+add wave -noupdate /multicycle_tb/DUT/INSTRwire
+add wave -noupdate /multicycle_tb/DUT/InstrCount
+add wave -noupdate /multicycle_tb/DUT/IncCount
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2500 ns} 0}
+WaveRestoreCursors {{Cursor 1} {2500000 ps} 0}
 configure wave -namecolwidth 227
 configure wave -valuecolwidth 57
 configure wave -justifyvalue left

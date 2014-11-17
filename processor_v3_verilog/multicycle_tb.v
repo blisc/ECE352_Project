@@ -34,6 +34,7 @@ module multicycle_tb;
 	
 	always #10 clock = ~clock;
 
+  assign SW[2] = 0;
 	assign	KEY[1] = clock;
 	assign	KEY[0] =  ~reset; // KEY is active high
 
