@@ -110,7 +110,7 @@ ALU		ALU(
 RF		RF_block(
 	.clock(clock),.reset(reset),.RFWrite(RFWrite),
 	.dataw(WBwire),.reg1(R1_in),.reg2(IR[5:4]),
-	.regw(R1_in),.data1(RFout1wire),.data2(RFout2wire),
+	.regw(RegWriteWire),.data1(RFout1wire),.data2(RFout2wire), //REMEMBER, Regw needs to be changed
 	.r0(reg0),.r1(reg1),.r2(reg2),.r3(reg3)
 );
 
