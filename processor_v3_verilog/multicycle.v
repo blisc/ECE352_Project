@@ -56,6 +56,11 @@ wire	IncCount;
 wire	[7:0] disp0, disp1, disp2, disp3;
 reg		N, Z;
 
+//new declared for part 2
+wire	[7:0] IR3, IR4, WBwire, PCdat, PC_INCwire, WBin; 
+wire  [1:0] RegWriteWire;
+wire  IR3Load, IR4Load, PCSel, ALU3, WBenable;
+
 // ------------------------ Input Assignment ------------------------ //
 assign	clock = KEY[1];
 assign	reset =  ~KEY[0]; // KEY is active high
@@ -89,12 +94,22 @@ assign HEX7 = 7'b1111111;
 // ----------------- END DE1 compatible HEX display ----------------- //
 */
 
-FSM		Control(//Need to change a shit ton of shit here now and not FSM anymore
+/*FSM		Control(//Need to change a shit ton of shit here now and not FSM anymore
 	.reset(reset),.clock(clock),.N(N),.Z(Z),.instr(IR[3:0]),
 	.PCwrite(PCWrite),.AddrSel(AddrSel),.MemRead(MemRead),.MemWrite(MemWrite),
 	.IRload(IRLoad),.R1Sel(R1Sel),.MDRload(MDRLoad),.R1R2Load(R1R2Load),
 	.ALU1(ALU1),.ALUOutWrite(ALUOutWrite),.RFWrite(RFWrite),.RegIn(RegIn),
 	.FlagWrite(FlagWrite),.ALU2(ALU2),.ALUop(ALUOp),.IncCount(IncCount)
+);*/
+
+controller Control(
+	.reset(reset), .clock(clock), .N(N), .Z(Z),
+	.IR(IR), .IR3(IR3), .IR4(IR4),
+	.PCwrite(PCWrite), .PCSel(PCSel), .MemRead(MemRead), .MemWrite(MemWrite),
+	.IRload(IRLoad), .IR3load(IR3Load), .IR4load(IR4Load),
+	.R1Sel(R1Sel), .RegWriteWire(RegWriteWire),
+	.R1R2Load(R1R2Load), .ALU1(ALU1), .ALU2(ALU2), .ALU3(ALU3), .ALUop(ALUOp),
+	.WBWrite(WBenable), .RFWrite(RFWrite), .FlagWrite(FlagWrite), .IncCount(IncCount)
 );
 
 memory	DataMem(
@@ -110,8 +125,8 @@ ALU		ALU(
 RF		RF_block(
 	.clock(clock),.reset(reset),.RFWrite(RFWrite),
 	.dataw(WBwire),.reg1(R1_in),.reg2(IR[5:4]),
-	.regw(RegWriteWire),.data1(RFout1wire),.data2(RFout2wire), //REMEMBER, Regw needs to be changed
-	.r0(reg0),.r1(reg1),.r2(reg2),.r3(reg3)
+	.regw(RegWriteWire),.data1(RFout1wire),.data2(RFout2wire), //REMEMBER, Regw and WBWwire needs to be changed
+	.r0(reg0),.r1(reg1),.r2(reg2),.r3(reg3)							//RegWriteWire, WBWire declared
 );
 
 register_8bit	IR1_reg(
@@ -126,12 +141,12 @@ register_8bit	IR1_reg(
 
 register_8bit	IR3_reg(
 	.clock(clock),.aclr(reset),.enable(IR3Load), //Remember to make new wires for this shit
-	.data(IR),.q(IR3)
+	.data(IR),.q(IR3)										//IR3, IR3Load
 );
 
 register_8bit	IR4_reg(
 	.clock(clock),.aclr(reset),.enable(IR4Load), //Remember to make new wires for this shit
-	.data(IR3),.q(IR4)
+	.data(IR3),.q(IR4)									//IR4, IR4Load
 );
 
 //register_8bit	MDR_reg(
@@ -141,16 +156,17 @@ register_8bit	IR4_reg(
 
 register_8bit	PC(
 	.clock(clock),.aclr(reset),.enable(PCWrite), //Remember some shit over here too
-	.data(PCdat),.q(PCwire)
+	.data(PCdat),.q(PCwire)								//PCdat
 );
 
 adder PC_inc(
 	.A(PCwire),.B(constant),.out(PC_INCwire) //Remember this shit, right here
+															//PC_INCwire
 );
 
 mux2to1_8bit PC_Sel(
 	.data0x(ALUwire),.data1x(PC_INCwire), ///////////////////////
-	.sel(PCsel),.result(PCdat)
+	.sel(PCSel),.result(PCdat)					//PCSel
 );
 
 register_8bit	R1(
@@ -166,11 +182,12 @@ register_8bit	R2(
 mux2to1_8bit	ALUOutSel(
 	.data0x(ALUwire),.data1x(MEMwire),
 	.sel(ALU3),.result(WBin)	//Shit here too motherfucker
+										//WBin, ALU3
 );
 
 register_8bit	WB_reg(
 	.clock(clock),.aclr(reset),.enable(WBenable), //Rem some shit here
-	.data(WBin),.q(WBwire)
+	.data(WBin),.q(WBwire)					//WBEnable
 );
 
 mux2to1_2bit		R1Sel_mux(
@@ -201,9 +218,9 @@ counter		Cycle_Counter(
 	.reset(reset),.clock(clock),.enable(IncCount),.count(InstrCount)
 );
 
-sExtend		SE4(.in(IR[7:4]),.out(SE4wire));
-zExtend		ZE3(.in(IR[5:3]),.out(ZE3wire));
-zExtend		ZE5(.in(IR[7:3]),.out(ZE5wire));
+sExtend		SE4(.in(IR3[7:4]),.out(SE4wire));
+zExtend		ZE3(.in(IR3[5:3]),.out(ZE3wire));
+zExtend		ZE5(.in(IR3[7:3]),.out(ZE5wire));
 // define parameter for the data size to be extended
 defparam	SE4.n = 4;
 defparam	ZE3.n = 3;

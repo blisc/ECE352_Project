@@ -3,27 +3,99 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'KEY[1]'
-Slack : -6.802
-TNS   : -369.443
+Slack : -7.714
+TNS   : -405.240
+
+Type  : Slow Model Setup 'register_8bit:IR1_reg|q[0]'
+Slack : -3.685
+TNS   : -3.685
+
+Type  : Slow Model Setup 'register_8bit:IR3_reg|q[0]'
+Slack : -3.665
+TNS   : -22.801
+
+Type  : Slow Model Setup 'register_8bit:IR4_reg|q[0]'
+Slack : -1.348
+TNS   : -2.689
+
+Type  : Slow Model Hold 'register_8bit:IR3_reg|q[0]'
+Slack : -3.126
+TNS   : -13.918
+
+Type  : Slow Model Hold 'register_8bit:IR4_reg|q[0]'
+Slack : -2.350
+TNS   : -4.693
 
 Type  : Slow Model Hold 'KEY[1]'
-Slack : 0.391
+Slack : -2.180
+TNS   : -66.700
+
+Type  : Slow Model Hold 'register_8bit:IR1_reg|q[0]'
+Slack : 0.003
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'KEY[1]'
 Slack : -2.000
-TNS   : -334.222
+TNS   : -301.222
+
+Type  : Slow Model Minimum Pulse Width 'register_8bit:IR1_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'register_8bit:IR3_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'register_8bit:IR4_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
 
 Type  : Fast Model Setup 'KEY[1]'
-Slack : -2.483
-TNS   : -127.020
+Slack : -3.006
+TNS   : -137.889
+
+Type  : Fast Model Setup 'register_8bit:IR3_reg|q[0]'
+Slack : -1.622
+TNS   : -8.285
+
+Type  : Fast Model Setup 'register_8bit:IR1_reg|q[0]'
+Slack : -1.377
+TNS   : -1.377
+
+Type  : Fast Model Setup 'register_8bit:IR4_reg|q[0]'
+Slack : 0.006
+TNS   : 0.000
+
+Type  : Fast Model Hold 'register_8bit:IR3_reg|q[0]'
+Slack : -1.467
+TNS   : -7.873
+
+Type  : Fast Model Hold 'register_8bit:IR4_reg|q[0]'
+Slack : -1.418
+TNS   : -2.834
 
 Type  : Fast Model Hold 'KEY[1]'
-Slack : 0.215
-TNS   : 0.000
+Slack : -1.390
+TNS   : -58.613
+
+Type  : Fast Model Hold 'register_8bit:IR1_reg|q[0]'
+Slack : -0.035
+TNS   : -0.035
 
 Type  : Fast Model Minimum Pulse Width 'KEY[1]'
 Slack : -2.000
-TNS   : -334.222
+TNS   : -301.222
+
+Type  : Fast Model Minimum Pulse Width 'register_8bit:IR1_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'register_8bit:IR3_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'register_8bit:IR4_reg|q[0]'
+Slack : 0.500
+TNS   : 0.000
 
 ------------------------------------------------------------
