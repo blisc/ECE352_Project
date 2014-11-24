@@ -5,21 +5,22 @@ PCwrite, PCSel, MemRead,
 MemWrite, IRload, IR3load, IR4load, 
 R1Sel, RegWriteWire,
 R1R2Load, ALU1, ALU2, ALU3, ALUop,
-WBWrite, RFWrite, FlagWrite, IncCount//, state
+WBWrite, RFWrite, FlagWrite, IncCount, //, state
+PCWrite2, PCWrite3
 );
 	input	[7:0] IR, IR3, IR4;
 	input	N, Z;
 	input	reset, clock;
 	output	PCwrite, MemRead, PCSel, MemWrite, IRload, R1Sel;
 	output	IR3load, IR4load, WBWrite;
-	output	R1R2Load, ALU1, ALU3, RFWrite, FlagWrite;
+	output	R1R2Load, ALU1, ALU3, RFWrite, FlagWrite, PCWrite2, PCWrite3;
 	output	IncCount; //Counter increment
 	output   [1:0] RegWriteWire;
 	output	[2:0] ALU2, ALUop;
 	//output	[3:0] state;
 	
 	reg	PCwrite, PCSel, MemRead, MemWrite, IRload, IR3load, IR4load, R1Sel;
-	reg	R1R2Load, ALU1, ALU3, WBWrite, RFWrite, FlagWrite;
+	reg	R1R2Load, ALU1, ALU3, WBWrite, RFWrite, FlagWrite, PCWrite2, PCWrite3;
 	reg	IncCount; //Counter increment registerization
 	reg	[1:0] RegWriteWire;
 	reg	[2:0] ALU2, ALUop;
@@ -42,6 +43,8 @@ WBWrite, RFWrite, FlagWrite, IncCount//, state
 				IRload = 1;
 				IR3load = 1;
 				IR4load = 1;
+				PCWrite2 = 1;
+				PCWrite3 = 1;
 			end
 			4'b1111:
 			begin
@@ -52,6 +55,8 @@ WBWrite, RFWrite, FlagWrite, IncCount//, state
 				IRload = 1;
 				IR3load = 1;
 				IR4load = 1;
+				PCWrite2 = 1;
+				PCWrite3 = 1;
 				end
 			4'b0001: //STOP
 			begin
@@ -60,6 +65,8 @@ WBWrite, RFWrite, FlagWrite, IncCount//, state
 				IRload = 0;
 				IR3load = 0;
 				IR4load = 0;
+				PCWrite2 = 0;
+				PCWrite3 = 0;
 				end
 			default:
 			begin
@@ -70,6 +77,8 @@ WBWrite, RFWrite, FlagWrite, IncCount//, state
 				IRload = 1;
 				IR3load = 1;
 				IR4load = 1;
+				PCWrite2 = 1;
+				PCWrite3 = 1;
 				end
 		endcase
 		case(inst3)

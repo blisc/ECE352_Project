@@ -1,6 +1,6 @@
 Analysis & Synthesis report for multicycle
-Fri Nov 21 21:13:44 2014
-Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edition
+Mon Nov 24 13:38:48 2014
+Quartus II 64-Bit Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Full Version
 
 
 ---------------------
@@ -16,17 +16,18 @@ Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edi
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
  10. User-Specified and Inferred Latches
- 11. General Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Source assignments for memory:DataMem|DualMem:inst|altsyncram:altsyncram_component|altsyncram_ak82:auto_generated
- 14. Parameter Settings for User Entity Instance: memory:DataMem|DualMem:inst|altsyncram:altsyncram_component
- 15. Parameter Settings for User Entity Instance: sExtend:SE4
- 16. Parameter Settings for User Entity Instance: zExtend:ZE3
- 17. Parameter Settings for User Entity Instance: zExtend:ZE5
- 18. altsyncram Parameter Settings by Entity Instance
- 19. Port Connectivity Checks: "adder:PC_inc"
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for memory:DataMem|DualMem:inst|altsyncram:altsyncram_component|altsyncram_ak82:auto_generated
+ 15. Parameter Settings for User Entity Instance: memory:DataMem|DualMem:inst|altsyncram:altsyncram_component
+ 16. Parameter Settings for User Entity Instance: sExtend:SE4
+ 17. Parameter Settings for User Entity Instance: zExtend:ZE3
+ 18. Parameter Settings for User Entity Instance: zExtend:ZE5
+ 19. altsyncram Parameter Settings by Entity Instance
+ 20. Port Connectivity Checks: "adder:PC_inc"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -49,24 +50,24 @@ applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                          ;
-+------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Nov 21 21:13:44 2014            ;
-; Quartus II 32-bit Version          ; 11.1 Build 259 01/25/2012 SP 2.11 SJ Web Edition ;
-; Revision Name                      ; multicycle                                       ;
-; Top-level Entity Name              ; multicycle                                       ;
-; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 334                                              ;
-;     Total combinational functions  ; 279                                              ;
-;     Dedicated logic registers      ; 104                                              ;
-; Total registers                    ; 104                                              ;
-; Total pins                         ; 87                                               ;
-; Total virtual pins                 ; 0                                                ;
-; Total memory bits                  ; 2,048                                            ;
-; Embedded Multiplier 9-bit elements ; 0                                                ;
-; Total PLLs                         ; 0                                                ;
-+------------------------------------+--------------------------------------------------+
++-------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                        ;
++------------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Nov 24 13:38:48 2014          ;
+; Quartus II 64-Bit Version          ; 11.1 Build 259 01/25/2012 SP 2 SJ Full Version ;
+; Revision Name                      ; multicycle                                     ;
+; Top-level Entity Name              ; multicycle                                     ;
+; Family                             ; Cyclone II                                     ;
+; Total logic elements               ; 342                                            ;
+;     Total combinational functions  ; 279                                            ;
+;     Dedicated logic registers      ; 112                                            ;
+; Total registers                    ; 112                                            ;
+; Total pins                         ; 87                                             ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 2,048                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                              ;
+; Total PLLs                         ; 0                                              ;
++------------------------------------+------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -152,48 +153,54 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
-Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
-+-------------------------------------+
-; Parallel Compilation                ;
-+----------------------------+--------+
-; Processors                 ; Number ;
-+----------------------------+--------+
-; Number detected on machine ; 2      ;
-; Maximum allowed            ; 1      ;
-+----------------------------+--------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2-4 processors         ;   0.0%      ;
++----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
-+----------------------------------+-----------------+----------------------------------------+--------------------------------------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                               ;
-+----------------------------------+-----------------+----------------------------------------+--------------------------------------------------------------------------------------------+
-; memory.bdf                       ; yes             ; User Block Diagram/Schematic File      ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/memory.bdf             ;
-; counter.v                        ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/counter.v              ;
-; register_8bit.v                  ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/register_8bit.v        ;
-; mux2to1_8bit.v                   ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/mux2to1_8bit.v         ;
-; mux2to1_2bit.v                   ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/mux2to1_2bit.v         ;
-; mux5to1_8bit.v                   ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/mux5to1_8bit.v         ;
-; DualMem.v                        ; yes             ; User Wizard-Generated File             ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/DualMem.v              ;
-; multicycle.v                     ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/multicycle.v           ;
-; ALU.v                            ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/ALU.v                  ;
-; RF.v                             ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/RF.v                   ;
-; extend.v                         ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/extend.v               ;
-; HEX.v                            ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/HEX.v                  ;
-; adder.v                          ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/adder.v                ;
-; controller.v                     ; yes             ; User Verilog HDL File                  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/controller.v           ;
-; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/altsyncram.tdf                           ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/stratix_ram_block.inc                    ;
-; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/lpm_mux.inc                              ;
-; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/lpm_decode.inc                           ;
-; aglobal111.inc                   ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/aglobal111.inc                           ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/a_rdenreg.inc                            ;
-; altrom.inc                       ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/altrom.inc                               ;
-; altram.inc                       ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/altram.inc                               ;
-; altdpram.inc                     ; yes             ; Megafunction                           ; c:/altera/11.1sp2/quartus/libraries/megafunctions/altdpram.inc                             ;
-; db/altsyncram_ak82.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/db/altsyncram_ak82.tdf ;
-; data.mif                         ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/data.mif               ;
-+----------------------------------+-----------------+----------------------------------------+--------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                             ;
++----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                         ;
++----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
+; memory.bdf                       ; yes             ; User Block Diagram/Schematic File      ; W:/Project/processor_v3_verilog/memory.bdf                           ;
+; counter.v                        ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/counter.v                            ;
+; register_8bit.v                  ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/register_8bit.v                      ;
+; mux2to1_8bit.v                   ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/mux2to1_8bit.v                       ;
+; mux2to1_2bit.v                   ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/mux2to1_2bit.v                       ;
+; mux5to1_8bit.v                   ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/mux5to1_8bit.v                       ;
+; DualMem.v                        ; yes             ; User Wizard-Generated File             ; W:/Project/processor_v3_verilog/DualMem.v                            ;
+; multicycle.v                     ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/multicycle.v                         ;
+; ALU.v                            ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/ALU.v                                ;
+; RF.v                             ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/RF.v                                 ;
+; extend.v                         ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/extend.v                             ;
+; HEX.v                            ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/HEX.v                                ;
+; adder.v                          ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/adder.v                              ;
+; controller.v                     ; yes             ; User Verilog HDL File                  ; W:/Project/processor_v3_verilog/controller.v                         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/altsyncram.tdf        ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/lpm_mux.inc           ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/lpm_decode.inc        ;
+; aglobal111.inc                   ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/aglobal111.inc        ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/altrom.inc            ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/altram.inc            ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/altera/11.1/quartus/libraries/megafunctions/altdpram.inc          ;
+; db/altsyncram_ak82.tdf           ; yes             ; Auto-Generated Megafunction            ; W:/Project/processor_v3_verilog/db/altsyncram_ak82.tdf               ;
+; data.mif                         ; yes             ; Auto-Found Memory Initialization File  ; W:/Project/processor_v3_verilog/data.mif                             ;
++----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -201,7 +208,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+--------+
 ; Resource                                    ; Usage  ;
 +---------------------------------------------+--------+
-; Estimated Total logic elements              ; 334    ;
+; Estimated Total logic elements              ; 342    ;
 ;                                             ;        ;
 ; Total combinational functions               ; 279    ;
 ; Logic element usage by number of LUT inputs ;        ;
@@ -213,16 +220,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- normal mode                          ; 244    ;
 ;     -- arithmetic mode                      ; 35     ;
 ;                                             ;        ;
-; Total registers                             ; 104    ;
-;     -- Dedicated logic registers            ; 104    ;
+; Total registers                             ; 112    ;
+;     -- Dedicated logic registers            ; 112    ;
 ;     -- I/O registers                        ; 0      ;
 ;                                             ;        ;
 ; I/O pins                                    ; 87     ;
 ; Total memory bits                           ; 2048   ;
 ; Maximum fan-out node                        ; KEY[1] ;
-; Maximum fan-out                             ; 112    ;
-; Total fan-out                               ; 1603   ;
-; Average fan-out                             ; 3.35   ;
+; Maximum fan-out                             ; 120    ;
+; Total fan-out                               ; 1635   ;
+; Average fan-out                             ; 3.36   ;
 +---------------------------------------------+--------+
 
 
@@ -231,7 +238,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Library Name ;
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+--------------+
-; |multicycle                                  ; 279 (1)           ; 104 (2)      ; 2048        ; 0            ; 0       ; 0         ; 87   ; 0            ; |multicycle                                                                                            ;              ;
+; |multicycle                                  ; 279 (1)           ; 112 (2)      ; 2048        ; 0            ; 0       ; 0         ; 87   ; 0            ; |multicycle                                                                                            ;              ;
 ;    |ALU:ALU|                                 ; 77 (77)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|ALU:ALU                                                                                    ;              ;
 ;    |HEXs:HEX_display|                        ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display                                                                           ;              ;
 ;       |HEX:hex0|                             ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display|HEX:hex0                                                                  ;              ;
@@ -256,7 +263,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |register_8bit:IR1_reg|                   ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:IR1_reg                                                                      ;              ;
 ;    |register_8bit:IR3_reg|                   ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:IR3_reg                                                                      ;              ;
 ;    |register_8bit:IR4_reg|                   ; 0 (0)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:IR4_reg                                                                      ;              ;
-;    |register_8bit:PC|                        ; 8 (8)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:PC                                                                           ;              ;
+;    |register_8bit:PC2|                       ; 8 (8)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:PC2                                                                          ;              ;
+;    |register_8bit:PC3|                       ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:PC3                                                                          ;              ;
 ;    |register_8bit:R1|                        ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:R1                                                                           ;              ;
 ;    |register_8bit:R2|                        ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:R2                                                                           ;              ;
 ;    |register_8bit:WB_reg|                    ; 8 (8)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|register_8bit:WB_reg                                                                       ;              ;
@@ -273,13 +281,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+------+----------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                                                                   ;
-+--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------------------------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                         ; IP Include File                                                               ;
-+--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------------------------------------------+
-; Altera ; RAM: 2-PORT  ; N/A     ; N/A          ; N/A          ; |multicycle|memory:DataMem|DualMem:inst ; C:/Users/Jason/Documents/GitHub/ECE352_Project/processor_v3_verilog/DualMem.v ;
-+--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                               ;
++--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                         ; IP Include File                           ;
++--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------+
+; Altera ; RAM: 2-PORT  ; N/A     ; N/A          ; N/A          ; |multicycle|memory:DataMem|DualMem:inst ; W:/Project/processor_v3_verilog/DualMem.v ;
++--------+--------------+---------+--------------+--------------+-----------------------------------------+-------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -296,8 +304,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; controller:Control|ALU1                             ; controller:Control|Mux6     ; yes                    ;
 ; controller:Control|R1Sel                            ; controller:Control|Decoder0 ; yes                    ;
 ; controller:Control|MemWrite                         ; controller:Control|Decoder1 ; yes                    ;
-; controller:Control|RegWriteWire[0]                  ; controller:Control|WideOr11 ; yes                    ;
 ; controller:Control|RegWriteWire[1]                  ; controller:Control|WideOr11 ; yes                    ;
+; controller:Control|RegWriteWire[0]                  ; controller:Control|WideOr11 ; yes                    ;
 ; controller:Control|ALU3                             ; controller:Control|WideOr5  ; yes                    ;
 ; controller:Control|WBWrite                          ; controller:Control|Decoder1 ; yes                    ;
 ; Number of user-specified and inferred latches = 13  ;                             ;                        ;
@@ -305,17 +313,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
++----------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                         ;
++---------------------------------------+------------------------------------+
+; Register name                         ; Reason for Removal                 ;
++---------------------------------------+------------------------------------+
+; register_8bit:PC|q[7]                 ; Merged with register_8bit:PC2|q[7] ;
+; register_8bit:PC|q[6]                 ; Merged with register_8bit:PC2|q[6] ;
+; register_8bit:PC|q[5]                 ; Merged with register_8bit:PC2|q[5] ;
+; register_8bit:PC|q[4]                 ; Merged with register_8bit:PC2|q[4] ;
+; register_8bit:PC|q[3]                 ; Merged with register_8bit:PC2|q[3] ;
+; register_8bit:PC|q[2]                 ; Merged with register_8bit:PC2|q[2] ;
+; register_8bit:PC|q[1]                 ; Merged with register_8bit:PC2|q[1] ;
+; register_8bit:PC|q[0]                 ; Merged with register_8bit:PC2|q[0] ;
+; Total Number of Removed Registers = 8 ;                                    ;
++---------------------------------------+------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 104   ;
+; Total registers                              ; 112   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 16    ;
-; Number of registers using Asynchronous Clear ; 104   ;
+; Number of registers using Asynchronous Clear ; 112   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 88    ;
+; Number of registers using Clock Enable       ; 96    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -325,8 +350,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                             ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------+----------------------------+
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R2|q[6]      ;                            ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R1|q[1]      ;                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R2|q[0]      ;                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R1|q[7]      ;                            ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; |multicycle|mux5to1_8bit:ALU2_mux|Mux1 ;                            ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; |multicycle|mux5to1_8bit:ALU2_mux|Mux6 ;                            ;
 ; 11:1               ; 4 bits    ; 28 LEs        ; 24 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[2]         ;                            ;
@@ -469,7 +494,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -477,11 +502,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit Analysis & Synthesis
-    Info: Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edition
-    Info: Processing started: Fri Nov 21 21:13:41 2014
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Full Version
+    Info: Processing started: Mon Nov 24 13:38:36 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off multicycle -c multicycle
-Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file memory.bdf
     Info (12023): Found entity 1: memory
 Info (12021): Found 1 design units, including 1 entities, in source file counter.v
@@ -530,31 +555,31 @@ Info (12128): Elaborating entity "chooseHEXs" for hierarchy "chooseHEXs:Hex_swit
 Info (12128): Elaborating entity "HEXs" for hierarchy "HEXs:HEX_display"
 Info (12128): Elaborating entity "HEX" for hierarchy "HEXs:HEX_display|HEX:hex0"
 Info (12128): Elaborating entity "controller" for hierarchy "controller:Control"
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "R1Sel", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "R1R2Load", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "ALU1", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "ALU2", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "ALU3", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "ALUop", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "WBWrite", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "MemWrite", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "MemRead", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(35): inferring latch(es) for variable "RegWriteWire", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "RegWriteWire[0]" at controller.v(35)
-Info (10041): Inferred latch for "RegWriteWire[1]" at controller.v(35)
-Info (10041): Inferred latch for "MemRead" at controller.v(35)
-Info (10041): Inferred latch for "MemWrite" at controller.v(35)
-Info (10041): Inferred latch for "WBWrite" at controller.v(35)
-Info (10041): Inferred latch for "ALUop[0]" at controller.v(35)
-Info (10041): Inferred latch for "ALUop[1]" at controller.v(35)
-Info (10041): Inferred latch for "ALUop[2]" at controller.v(35)
-Info (10041): Inferred latch for "ALU3" at controller.v(35)
-Info (10041): Inferred latch for "ALU2[0]" at controller.v(35)
-Info (10041): Inferred latch for "ALU2[1]" at controller.v(35)
-Info (10041): Inferred latch for "ALU2[2]" at controller.v(35)
-Info (10041): Inferred latch for "ALU1" at controller.v(35)
-Info (10041): Inferred latch for "R1R2Load" at controller.v(35)
-Info (10041): Inferred latch for "R1Sel" at controller.v(35)
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "R1Sel", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "R1R2Load", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "ALU1", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "ALU2", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "ALU3", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "ALUop", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "WBWrite", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "MemWrite", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "MemRead", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(36): inferring latch(es) for variable "RegWriteWire", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "RegWriteWire[0]" at controller.v(36)
+Info (10041): Inferred latch for "RegWriteWire[1]" at controller.v(36)
+Info (10041): Inferred latch for "MemRead" at controller.v(36)
+Info (10041): Inferred latch for "MemWrite" at controller.v(36)
+Info (10041): Inferred latch for "WBWrite" at controller.v(36)
+Info (10041): Inferred latch for "ALUop[0]" at controller.v(36)
+Info (10041): Inferred latch for "ALUop[1]" at controller.v(36)
+Info (10041): Inferred latch for "ALUop[2]" at controller.v(36)
+Info (10041): Inferred latch for "ALU3" at controller.v(36)
+Info (10041): Inferred latch for "ALU2[0]" at controller.v(36)
+Info (10041): Inferred latch for "ALU2[1]" at controller.v(36)
+Info (10041): Inferred latch for "ALU2[2]" at controller.v(36)
+Info (10041): Inferred latch for "ALU1" at controller.v(36)
+Info (10041): Inferred latch for "R1R2Load" at controller.v(36)
+Info (10041): Inferred latch for "R1Sel" at controller.v(36)
 Info (12128): Elaborating entity "memory" for hierarchy "memory:DataMem"
 Info (12128): Elaborating entity "mux2to1_8bit" for hierarchy "memory:DataMem|mux2to1_8bit:inst3"
 Info (12128): Elaborating entity "DualMem" for hierarchy "memory:DataMem|DualMem:inst"
@@ -600,6 +625,7 @@ Warning (10230): Verilog HDL assignment warning at counter.v(10): truncated valu
 Info (12128): Elaborating entity "sExtend" for hierarchy "sExtend:SE4"
 Info (12128): Elaborating entity "zExtend" for hierarchy "zExtend:ZE3"
 Info (12128): Elaborating entity "zExtend" for hierarchy "zExtend:ZE5"
+Info (13005): Duplicate registers merged to single register
 Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
     Info (13026): Duplicate LATCH primitive "controller:Control|ALU2[2]" merged with LATCH primitive "controller:Control|ALUop[2]"
 Warning (13012): Latch controller:Control|ALUop[0] has unsafe behavior
@@ -618,9 +644,9 @@ Warning (13012): Latch controller:Control|R1Sel has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR1_reg|q[0]
 Warning (13012): Latch controller:Control|MemWrite has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR3_reg|q[3]
-Warning (13012): Latch controller:Control|RegWriteWire[0] has unsafe behavior
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR4_reg|q[0]
 Warning (13012): Latch controller:Control|RegWriteWire[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR4_reg|q[0]
+Warning (13012): Latch controller:Control|RegWriteWire[0] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR4_reg|q[0]
 Warning (13012): Latch controller:Control|ALU3 has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal register_8bit:IR3_reg|q[3]
@@ -642,15 +668,15 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[0]"
     Warning (15610): No output dependent on input pin "SW[1]"
-Info (21057): Implemented 437 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 445 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 82 output pins
-    Info (21061): Implemented 342 logic cells
+    Info (21061): Implemented 350 logic cells
     Info (21064): Implemented 8 RAM segments
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 59 warnings
-    Info: Peak virtual memory: 311 megabytes
-    Info: Processing ended: Fri Nov 21 21:13:44 2014
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 58 warnings
+    Info: Peak virtual memory: 388 megabytes
+    Info: Processing ended: Mon Nov 24 13:38:48 2014
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:08
 
 

@@ -57,9 +57,9 @@ wire	[7:0] disp0, disp1, disp2, disp3;
 reg		N, Z;
 
 //new declared for part 2
-wire	[7:0] IR3, IR4, WBwire, PCdat, PC_INCwire, WBin; 
+wire	[7:0] IR3, IR4, WBwire, PCdat, PC_INCwire, WBin,  PCwire2, PCwire3; 
 wire  [1:0] RegWriteWire;
-wire  IR3Load, IR4Load, PCSel, ALU3, WBenable;
+wire  IR3Load, IR4Load, PCSel, ALU3, WBenable, PCWrite2, PCWrite3;
 
 // ------------------------ Input Assignment ------------------------ //
 assign	clock = KEY[1];
@@ -109,7 +109,8 @@ controller Control(
 	.IRload(IRLoad), .IR3load(IR3Load), .IR4load(IR4Load),
 	.R1Sel(R1Sel), .RegWriteWire(RegWriteWire),
 	.R1R2Load(R1R2Load), .ALU1(ALU1), .ALU2(ALU2), .ALU3(ALU3), .ALUop(ALUOp),
-	.WBWrite(WBenable), .RFWrite(RFWrite), .FlagWrite(FlagWrite), .IncCount(IncCount)
+	.WBWrite(WBenable), .RFWrite(RFWrite), .FlagWrite(FlagWrite), .IncCount(IncCount),
+	.PCWrite2(PCWrite2), .PCWrite3(PCWrite3)
 );
 
 memory	DataMem(
@@ -159,6 +160,16 @@ register_8bit	PC(
 	.data(PCdat),.q(PCwire)								//PCdat
 );
 
+register_8bit	PC2(
+	.clock(clock),.aclr(reset),.enable(PCWrite2), //Remember some shit over here too
+	.data(PCdat),.q(PCwire2)								//PCWrite2, PCwire2
+);
+
+register_8bit	PC3(
+	.clock(clock),.aclr(reset),.enable(PCWrite3), //Remember some shit over here too
+	.data(PCwire2),.q(PCwire3)								//PCWrite3, PCwire3
+);
+
 adder PC_inc(
 	.A(PCwire),.B(constant),.out(PC_INCwire) //Remember this shit, right here
 															//PC_INCwire
@@ -206,8 +217,8 @@ mux2to1_2bit		R1Sel_mux(
 //);
 
 mux2to1_8bit 		ALU1_mux(
-	.data0x(PCwire),.data1x(R1wire),
-	.sel(ALU1),.result(ALU1wire)
+	.data0x(PCwire3),.data1x(R1wire),  //check data0x to reg PC
+	.sel(ALU1),.result(ALU1wire)			//done
 );
 
 mux5to1_8bit 		ALU2_mux(
