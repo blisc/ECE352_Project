@@ -31,12 +31,13 @@ R1Mux, R2Mux, AddrMux, MemInMux
 	reg	R1Mux, R2Mux, AddrMux, MemInMux;
 	
 	wire [3:0] inst1, inst3, inst4;
-	wire writing;
+	wire writing, ori;
 	
 	assign inst1 = IR[3:0];
 	assign inst3 = IR3[3:0];
 	assign inst4 = IR4[3:0];
-	assign writing = (IR4[1] & IR4[1]) | (~IR4[2]&~IR4[1]&~IR4[0]) | (~IR4[3]&IR4[2]&~IR4[0]);
+	assign writing = (IR4[1] & IR4[0]) | (~IR4[2]&~IR4[1]&~IR4[0]) | (~IR4[3]&IR4[2]&~IR4[0]);
+	assign ori = IR4[2] & IR4[1] & IR4[0];
 	
 	always @(*) 
 	begin
@@ -52,17 +53,17 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				IR4load = 1;
 				PCWrite2 = 1;
 				PCWrite3 = 1;
-				if (writing)
+				if (ori)
 				begin
-					if(IR[7:6] == IR4[7:6])
+					R1Mux = 0;
+					R2Mux = 1;
+				end
+				else if (writing)
+				begin
+					if(2'b01 == IR4[7:6])
 						begin
 							R1Mux = 0;
 							R2Mux = 1;
-						end
-					else if(IR[5:4] == IR4[7:6])
-						begin
-							R1Mux = 1;
-							R2Mux = 0;
 						end
 					else
 						begin
@@ -87,17 +88,17 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				IR4load = 1;
 				PCWrite2 = 1;
 				PCWrite3 = 1;
-				if (writing)
+				if (ori)
 				begin
-					if(IR[7:6] == IR4[7:6])
+					R1Mux = 0;
+					R2Mux = 1;
+				end
+				else if (writing)
+				begin
+					if(2'b01 == IR4[7:6])
 						begin
 							R1Mux = 0;
 							R2Mux = 1;
-						end
-					else if(IR[5:4] == IR4[7:6])
-						begin
-							R1Mux = 1;
-							R2Mux = 0;
 						end
 					else
 						begin
@@ -132,21 +133,41 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				IR4load = 1;
 				PCWrite2 = 1;
 				PCWrite3 = 1;
-				if (writing)
+				if (ori)
 				begin
-					if(IR[7:6] == IR4[7:6])
+					if(IR[7:6] == 2'b01)
 						begin
 							R1Mux = 0;
-							R2Mux = 1;
-						end
-					else if(IR[5:4] == IR4[7:6])
-						begin
-							R1Mux = 1;
-							R2Mux = 0;
 						end
 					else
 						begin
 							R1Mux = 1;
+						end
+					if(IR[5:4] == 2'b01)
+						begin
+							R2Mux = 0;
+						end
+					else
+						begin
+							R2Mux = 1;
+						end
+				end
+				else if (writing)
+				begin
+					if(IR[7:6] == IR4[7:6])
+						begin
+							R1Mux = 0;
+						end
+					else
+						begin
+							R1Mux = 1;
+						end
+					if(IR[5:4] == IR4[7:6])
+						begin
+							R2Mux = 0;
+						end
+					else
+						begin
 							R2Mux = 1;
 						end
 				end
@@ -159,13 +180,26 @@ R1Mux, R2Mux, AddrMux, MemInMux
 		endcase
 		case(inst3)
 			4'b0000: //load
-			begin
+				begin
 				ALU3 = 1;
 				MemRead = 1;
 				FlagWrite = 0;
 				WBWrite = 1;
 				PCSel = 1;
-				if (writing)
+				MemInMux = 1;
+				MemWrite = 0;
+				if (ori)
+				begin
+					if(IR3[5:4] == 2'b01)
+						begin
+							AddrMux = 0;
+						end
+					else
+						begin
+							AddrMux = 1;
+						end
+				end
+				else if (writing)
 					begin
 						if(IR3[5:4] == IR4[7:6])
 							begin
@@ -186,22 +220,42 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				MemWrite = 1;
 				FlagWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							MemInMux = 0;
+						end
+					else
+						begin
+							MemInMux = 1;
+						end
+					if(IR3[5:4] == 2'b01)
+						begin
+							AddrMux = 0;
+						end
+					else
+						begin
+							AddrMux = 1;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin
-								AddrMux = 1;
 								MemInMux = 0;
 							end
-						else if(IR3[5:4] == IR4[7:6])
+						else
+							begin
+								MemInMux = 1;
+							end
+						if(IR3[5:4] == IR4[7:6])
 							begin
 								AddrMux = 0;
-								MemInMux = 1;
 							end
 						else
 							begin
 								AddrMux = 1;
-								MemInMux = 1;
 							end
 					end
 				else
@@ -218,21 +272,41 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				WBWrite = 1;
 				MemWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							ALU1 = 2'b10;
+						end
+					else
+						begin
+							ALU1 = 2'b01;
+						end
+					if(IR3[5:4] == 2'b01)
+						begin
+							ALU2 = 3'b001;
+						end
+					else
+						begin
+							ALU2 = 3'b000;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin
 								ALU1 = 2'b10;
-								ALU2 = 3'b000;
-							end
-						else if(IR3[5:4] == IR4[7:6])
-							begin
-								ALU1 = 2'b01;
-								ALU2 = 3'b001;
 							end
 						else
 							begin
 								ALU1 = 2'b01;
+							end
+						if(IR3[5:4] == IR4[7:6])
+							begin
+								ALU2 = 3'b001;
+							end
+						else
+							begin
 								ALU2 = 3'b000;
 							end
 					end
@@ -250,21 +324,41 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				WBWrite = 1;
 				MemWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							ALU1 = 2'b10;
+						end
+					else
+						begin
+							ALU1 = 2'b01;
+						end
+					if(IR3[5:4] == 2'b01)
+						begin
+							ALU2 = 3'b001;
+						end
+					else
+						begin
+							ALU2 = 3'b000;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin
 								ALU1 = 2'b10;
-								ALU2 = 3'b000;
-							end
-						else if(IR3[5:4] == IR4[7:6])
-							begin
-								ALU1 = 2'b01;
-								ALU2 = 3'b001;
 							end
 						else
 							begin
 								ALU1 = 2'b01;
+							end
+						if(IR3[5:4] == IR4[7:6])
+							begin
+								ALU2 = 3'b001;
+							end
+						else
+							begin
 								ALU2 = 3'b000;
 							end
 					end
@@ -282,21 +376,41 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				WBWrite = 1;
 				MemWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							ALU1 = 2'b10;
+						end
+					else
+						begin
+							ALU1 = 2'b01;
+						end
+					if(IR3[5:4] == 2'b01)
+						begin
+							ALU2 = 3'b001;
+						end
+					else
+						begin
+							ALU2 = 3'b000;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin
 								ALU1 = 2'b10;
-								ALU2 = 3'b000;
-							end
-						else if(IR3[5:4] == IR4[7:6])
-							begin
-								ALU1 = 2'b01;
-								ALU2 = 3'b001;
 							end
 						else
 							begin
 								ALU1 = 2'b01;
+							end
+						if(IR3[5:4] == IR4[7:6])
+							begin
+								ALU2 = 3'b001;
+							end
+						else
+							begin
 								ALU2 = 3'b000;
 							end
 					end
@@ -315,9 +429,13 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				WBWrite = 1;
 				MemWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					ALU1 = 2'b10;
+				end
+				else if (writing)
 					begin
-						if (IR3[7:6] == IR4[7:6])
+						if (2'b01 == IR4[7:6])
 							begin
 								ALU1 = 2'b10;
 							end
@@ -340,9 +458,13 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				WBWrite = 1;
 				MemWrite = 0;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					ALU1 = 2'b10;
+				end
+				else if (writing)
 					begin
-						if (IR3[7:6] == IR4[7:6])
+						if (2'b01 == IR4[7:6])
 							begin
 								ALU1 = 2'b10;
 							end
@@ -365,7 +487,18 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				ALU3 = 0;
 				WBWrite = 1;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							ALU1 = 2'b10;
+						end
+					else
+						begin
+							ALU1 = 2'b01;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin
@@ -390,7 +523,18 @@ R1Mux, R2Mux, AddrMux, MemInMux
 				ALU3 = 0;
 				WBWrite = 1;
 				PCSel = 1;
-				if (writing)
+				if (ori)
+				begin
+					if (IR3[7:6] == 2'b01)
+						begin
+							ALU1 = 2'b10;
+						end
+					else
+						begin
+							ALU1 = 2'b01;
+						end
+				end
+				else if (writing)
 					begin
 						if (IR3[7:6] == IR4[7:6])
 							begin

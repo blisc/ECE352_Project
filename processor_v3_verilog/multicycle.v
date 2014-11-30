@@ -64,7 +64,7 @@ wire  IR3Load, IR4Load, PCSel, ALU3, WBenable, PCWrite2, PCWrite3;
 //Data Hazards Addition
 wire  [1:0] ALU1;
 wire	[7:0] R1wire1, R2wire2, AddrSelect, MemIN;
-wire	R1Mux, R2Mux;
+wire	R1Mux, R2Mux, AddrMux, MemInMux;
 
 
 // ------------------------ Input Assignment ------------------------ //
