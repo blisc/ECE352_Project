@@ -41,7 +41,7 @@ output	[17:0] LEDR;
 // ------------------------- Registers/Wires ------------------------ //
 wire	clock, reset;
 wire	IRLoad, MDRLoad, MemRead, MemWrite, PCWrite, RegIn, AddrSel;
-wire	ALU1, ALUOutWrite, FlagWrite, R1R2Load, R1Sel, RFWrite;
+wire	ALUOutWrite, FlagWrite, R1R2Load, R1Sel, RFWrite;
 wire	[7:0] R2wire, R1wire, RFout1wire, RFout2wire;
 wire	[7:0] ALU1wire, ALU2wire, ALUwire, ALUOut, MDRwire, MEMwire;
 wire	[7:0] PCwire, INSTRwire;
@@ -60,6 +60,12 @@ reg		N, Z;
 wire	[7:0] IR3, IR4, WBwire, PCdat, PC_INCwire, WBin,  PCwire2, PCwire3; 
 wire  [1:0] RegWriteWire;
 wire  IR3Load, IR4Load, PCSel, ALU3, WBenable, PCWrite2, PCWrite3;
+
+//Data Hazards Addition
+wire  [1:0] ALU1;
+wire	[7:0] R1wire1, R2wire2, AddrSelect, MemIN;
+wire	R1Mux, R2Mux;
+
 
 // ------------------------ Input Assignment ------------------------ //
 assign	clock = KEY[1];
@@ -102,6 +108,28 @@ assign HEX7 = 7'b1111111;
 	.FlagWrite(FlagWrite),.ALU2(ALU2),.ALUop(ALUOp),.IncCount(IncCount)
 );*/
 
+//DataHazard Stuff
+mux2to1_8bit R1_mux(
+	.data0x(WBwire),.data1x(RFout1wire), 
+	.sel(R1Mux),.result(R1wire1)					
+);
+
+mux2to1_8bit R2_mux(
+	.data0x(WBwire),.data1x(RFout2wire), 
+	.sel(R2Mux),.result(R2wire2)					
+);
+
+mux2to1_8bit Addr_mux(
+	.data0x(WBwire),.data1x(R2wire), 
+	.sel(AddrMux),.result(AddrSelect)					
+);
+
+mux2to1_8bit MemIn_mux(
+	.data0x(WBwire),.data1x(R1wire), 
+	.sel(MemInMux),.result(MemIN)					
+);
+
+//General
 controller Control(
 	.reset(reset), .clock(clock), .N(N), .Z(Z),
 	.IR(IR), .IR3(IR3), .IR4(IR4),
@@ -110,12 +138,13 @@ controller Control(
 	.R1Sel(R1Sel), .RegWriteWire(RegWriteWire),
 	.R1R2Load(R1R2Load), .ALU1(ALU1), .ALU2(ALU2), .ALU3(ALU3), .ALUop(ALUOp),
 	.WBWrite(WBenable), .RFWrite(RFWrite), .FlagWrite(FlagWrite), .IncCount(IncCount),
-	.PCWrite2(PCWrite2), .PCWrite3(PCWrite3)
+	.PCWrite2(PCWrite2), .PCWrite3(PCWrite3),
+	.R1Mux(R1Mux), .R2Mux(R2Mux), .AddrMux(AddrMux), .MemInMux(MemInMux)
 );
 
 memory	DataMem(
 	.MemRead(MemRead),.wren(MemWrite),.clock(clock),
-	.address(R2wire),.data(R1wire),.q(MEMwire),.address_pc(PCwire),.q_pc(INSTRwire)
+	.address(AddrSelect),.data(MemIN),.q(MEMwire),.address_pc(PCwire),.q_pc(INSTRwire)
 );
 
 ALU		ALU(
@@ -182,12 +211,12 @@ mux2to1_8bit PC_Sel(
 
 register_8bit	R1(
 	.clock(clock),.aclr(reset),.enable(R1R2Load),
-	.data(RFout1wire),.q(R1wire)
+	.data(R1wire1),.q(R1wire)
 );
 
 register_8bit	R2(
 	.clock(clock),.aclr(reset),.enable(R1R2Load),
-	.data(RFout2wire),.q(R2wire)
+	.data(R2wire2),.q(R2wire)
 );
 
 mux2to1_8bit	ALUOutSel(
@@ -216,13 +245,13 @@ mux2to1_2bit		R1Sel_mux(
 //	.sel(RegIn),.result(RegWire)
 //);
 
-mux2to1_8bit 		ALU1_mux(
-	.data0x(PCwire3),.data1x(R1wire),  //check data0x to reg PC
-	.sel(ALU1),.result(ALU1wire)			//done
+mux3to1_8bit 		ALU1_mux(
+	.data0x(PCwire3),.data1x(R1wire), .data2x(WBwire),  //check data0x to reg PC
+	.sel(ALU1), .result(ALU1wire)			//done
 );
 
 mux5to1_8bit 		ALU2_mux(
-	.data0x(R2wire),.data1x(constant),.data2x(SE4wire),
+	.data0x(R2wire),.data1x(WBwire),.data2x(SE4wire),
 	.data3x(ZE5wire),.data4x(ZE3wire),.sel(ALU2),.result(ALU2wire)
 );
 counter		Cycle_Counter(
@@ -264,7 +293,7 @@ assign	LEDR[13] = IRLoad;
 assign	LEDR[12] = R1Sel;
 assign	LEDR[11] = MDRLoad;
 assign	LEDR[10] = R1R2Load;
-assign	LEDR[9] = ALU1;
+assign	LEDR[9] = ALU1[0];
 assign	LEDR[2] = ALUOutWrite;
 assign	LEDR[1] = RFWrite;
 assign	LEDR[0] = RegIn;

@@ -2,5 +2,6 @@
 /multicycle_assembler
 /multicycle_documentation
 /processor_v3_verilog
+!/processor_v3_verilog/*.v
 #/processor_v3_verilog/incremental_db/*
 #/processor_v3_verilog/work
