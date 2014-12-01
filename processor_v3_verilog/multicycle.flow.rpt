@@ -1,5 +1,5 @@
 Flow report for multicycle
-Sun Nov 30 23:54:55 2014
+Mon Dec 01 00:52:58 2014
 Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Flow Summary                                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Flow Status                        ; Successful - Sun Nov 30 23:54:54 2014            ;
+; Flow Status                        ; Successful - Mon Dec 01 00:52:57 2014            ;
 ; Quartus II 32-bit Version          ; 11.1 Build 259 01/25/2012 SP 2.11 SJ Web Edition ;
 ; Revision Name                      ; multicycle                                       ;
 ; Top-level Entity Name              ; multicycle                                       ;
@@ -62,7 +62,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/30/2014 23:54:13 ;
+; Start date & time ; 12/01/2014 00:52:18 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; multicycle          ;
 +-------------------+---------------------+
@@ -73,7 +73,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 79554451326946.141740965304536        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 79554451326946.141741313701192        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                    ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                     ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; 16764057                              ; --            ; --          ; Top        ;
@@ -89,10 +89,10 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 331 MB              ; 00:00:08                           ;
+; Analysis & Synthesis      ; 00:00:11     ; 1.0                     ; 331 MB              ; 00:00:08                           ;
 ; Fitter                    ; 00:00:17     ; 1.0                     ; 429 MB              ; 00:00:17                           ;
 ; Assembler                 ; 00:00:06     ; 1.0                     ; 364 MB              ; 00:00:06                           ;
-; TimeQuest Timing Analyzer ; 00:00:07     ; 1.0                     ; 325 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:06     ; 1.0                     ; 329 MB              ; 00:00:06                           ;
 ; Total                     ; 00:00:40     ; --                      ; --                  ; 00:00:37                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
