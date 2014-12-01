@@ -42,7 +42,7 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 	assign next_is_branch = Next_IR[0] & ~Next_IR[1] & (Next_IR[2] | Next_IR[3]);
 	assign PCwrite = PCwrite_p1 & PCwrite_p2;
 	assign PCWrite2 = PCwrite;
-	assign branch_taken = (~inst1[3]&Z) | (inst1[3]&inst1[2]&~N) | (inst1[3]&~inst1[2]&~Z);
+	assign branch_taken = (~inst3[3]&Z) | (inst3[3]&inst3[2]&~N) | (inst3[3]&~inst3[2]&~Z);
 	
 	parameter A = 2'b00, B = 2'b01, C = 2'b10, D = 2'b11;
 	
@@ -652,7 +652,7 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 				end
 			B: //Branch just occured, send in the nops
 			begin
-				if(branch_taken) next_state = C; else next_state = D;
+				next_state = C;
 				IR1_Sel = 1;
 				PCwrite_p1 = 0;
 				end
@@ -660,14 +660,14 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 			begin
 				next_state = A;
 				IR1_Sel = 1;
-				PCwrite_p1 = 1;
+				if(branch_taken) PCwrite_p1 = 1; else PCwrite_p1 = 0;
 				end
-			D:	//Branch not taken
-			begin
-				next_state = A;
-				IR1_Sel = 1;
-				PCwrite_p1 = 0;
-				end
+//			D:	//Branch not taken
+//			begin
+//				next_state = A;
+//				IR1_Sel = 1;
+//				PCwrite_p1 = 0;
+//				end
 			default:
 			begin
 				next_state = A;
