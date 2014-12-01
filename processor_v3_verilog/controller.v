@@ -32,7 +32,7 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 	reg	[1:0]	state, next_state;
 	
 	wire [3:0] inst1, inst3, inst4;
-	wire writing, ori, next_is_branch;
+	wire writing, ori, next_is_branch, branch_taken;
 	
 	assign inst1 = IR[3:0];
 	assign inst3 = IR3[3:0];
@@ -42,6 +42,7 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 	assign next_is_branch = Next_IR[0] & ~Next_IR[1] & (Next_IR[2] | Next_IR[3]);
 	assign PCwrite = PCwrite_p1 & PCwrite_p2;
 	assign PCWrite2 = PCwrite;
+	assign branch_taken = (~inst1[3]&Z) | (inst1[3]&inst1[2]&N) | (inst1[3]&~inst1[2]&~Z);
 	
 	parameter A = 2'b00, B = 2'b01, C = 2'b10, D = 2'b11;
 	
@@ -641,7 +642,7 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 		endcase
 	end
 	
-	always @(next_is_branch, state) begin
+	always @(next_is_branch, state, branch_taken) begin
 		case(state)
 			A:	//Idle
 			begin
@@ -651,22 +652,22 @@ R1Mux, R2Mux, AddrMux, MemInMux, IR1_Sel
 				end
 			B: //Branch just occured, send in the nops
 			begin
-				next_state = C;
+				if(branch_taken) next_state = C; else next_state = D;
 				IR1_Sel = 1;
 				PCwrite_p1 = 0;
 				end
-			C:
+			C:	//Branch taken
 			begin
 				next_state = A;
 				IR1_Sel = 1;
 				PCwrite_p1 = 1;
 				end
-//			D:							//PC Write happens in state C not D
-//			begin
-//				next_state = A;
-//				IR1_Sel = 1;
-//				PCwrite_p1 = 1;
-//				end
+			D:	//Branch not taken
+			begin
+				next_state = A;
+				IR1_Sel = 1;
+				PCwrite_p1 = 0;
+				end
 			default:
 			begin
 				next_state = A;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for multicycle
-Sun Nov 30 19:56:48 2014
+Sun Nov 30 23:38:27 2014
 Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edition
 
 
@@ -56,15 +56,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Nov 30 19:56:48 2014            ;
+; Analysis & Synthesis Status        ; Successful - Sun Nov 30 23:38:27 2014            ;
 ; Quartus II 32-bit Version          ; 11.1 Build 259 01/25/2012 SP 2.11 SJ Web Edition ;
 ; Revision Name                      ; multicycle                                       ;
 ; Top-level Entity Name              ; multicycle                                       ;
 ; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 413                                              ;
-;     Total combinational functions  ; 357                                              ;
-;     Dedicated logic registers      ; 115                                              ;
-; Total registers                    ; 115                                              ;
+; Total logic elements               ; 416                                              ;
+;     Total combinational functions  ; 361                                              ;
+;     Dedicated logic registers      ; 116                                              ;
+; Total registers                    ; 116                                              ;
 ; Total pins                         ; 87                                               ;
 ; Total virtual pins                 ; 0                                                ;
 ; Total memory bits                  ; 2,048                                            ;
@@ -206,27 +206,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+--------+
 ; Resource                                    ; Usage  ;
 +---------------------------------------------+--------+
-; Estimated Total logic elements              ; 413    ;
+; Estimated Total logic elements              ; 416    ;
 ;                                             ;        ;
-; Total combinational functions               ; 357    ;
+; Total combinational functions               ; 361    ;
 ; Logic element usage by number of LUT inputs ;        ;
-;     -- 4 input functions                    ; 180    ;
-;     -- 3 input functions                    ; 126    ;
-;     -- <=2 input functions                  ; 51     ;
+;     -- 4 input functions                    ; 183    ;
+;     -- 3 input functions                    ; 125    ;
+;     -- <=2 input functions                  ; 53     ;
 ;                                             ;        ;
 ; Logic elements by mode                      ;        ;
-;     -- normal mode                          ; 322    ;
+;     -- normal mode                          ; 326    ;
 ;     -- arithmetic mode                      ; 35     ;
 ;                                             ;        ;
-; Total registers                             ; 115    ;
-;     -- Dedicated logic registers            ; 115    ;
+; Total registers                             ; 116    ;
+;     -- Dedicated logic registers            ; 116    ;
 ;     -- I/O registers                        ; 0      ;
 ;                                             ;        ;
 ; I/O pins                                    ; 87     ;
 ; Total memory bits                           ; 2048   ;
 ; Maximum fan-out node                        ; KEY[1] ;
-; Maximum fan-out                             ; 123    ;
-; Total fan-out                               ; 1899   ;
+; Maximum fan-out                             ; 124    ;
+; Total fan-out                               ; 1915   ;
 ; Average fan-out                             ; 3.35   ;
 +---------------------------------------------+--------+
 
@@ -236,8 +236,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Library Name ;
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+--------------+
-; |multicycle                                  ; 357 (1)           ; 115 (2)      ; 2048        ; 0            ; 0       ; 0         ; 87   ; 0            ; |multicycle                                                                                            ;              ;
-;    |ALU:ALU|                                 ; 77 (77)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|ALU:ALU                                                                                    ;              ;
+; |multicycle                                  ; 361 (1)           ; 116 (2)      ; 2048        ; 0            ; 0       ; 0         ; 87   ; 0            ; |multicycle                                                                                            ;              ;
+;    |ALU:ALU|                                 ; 78 (78)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|ALU:ALU                                                                                    ;              ;
 ;    |HEXs:HEX_display|                        ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display                                                                           ;              ;
 ;       |HEX:hex0|                             ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display|HEX:hex0                                                                  ;              ;
 ;       |HEX:hex1|                             ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display|HEX:hex1                                                                  ;              ;
@@ -249,7 +249,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;       |HEX:hex7|                             ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|HEXs:HEX_display|HEX:hex7                                                                  ;              ;
 ;    |RF:RF_block|                             ; 4 (4)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|RF:RF_block                                                                                ;              ;
 ;    |chooseHEXs:Hex_switch|                   ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|chooseHEXs:Hex_switch                                                                      ;              ;
-;    |controller:Control|                      ; 60 (60)           ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|controller:Control                                                                         ;              ;
+;    |controller:Control|                      ; 63 (63)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|controller:Control                                                                         ;              ;
 ;    |counter:Cycle_Counter|                   ; 16 (16)           ; 16 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|counter:Cycle_Counter                                                                      ;              ;
 ;    |memory:DataMem|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|memory:DataMem                                                                             ;              ;
 ;       |DualMem:inst|                         ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |multicycle|memory:DataMem|DualMem:inst                                                                ;              ;
@@ -296,13 +296,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Encoding Type:  One-Hot
 +------------------------------------------------------+
 ; State Machine - |multicycle|controller:Control|state ;
-+---------+---------+---------+------------------------+
-; Name    ; state.A ; state.C ; state.B                ;
-+---------+---------+---------+------------------------+
-; state.A ; 0       ; 0       ; 0                      ;
-; state.B ; 1       ; 0       ; 1                      ;
-; state.C ; 1       ; 1       ; 0                      ;
-+---------+---------+---------+------------------------+
++---------+---------+---------+---------+--------------+
+; Name    ; state.D ; state.C ; state.B ; state.A      ;
++---------+---------+---------+---------+--------------+
+; state.A ; 0       ; 0       ; 0       ; 0            ;
+; state.B ; 0       ; 0       ; 1       ; 1            ;
+; state.C ; 0       ; 1       ; 0       ; 1            ;
+; state.D ; 1       ; 0       ; 0       ; 1            ;
++---------+---------+---------+---------+--------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -332,21 +333,23 @@ Encoding Type:  One-Hot
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+----------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                         ;
-+---------------------------------------+------------------------------------+
-; Register name                         ; Reason for Removal                 ;
-+---------------------------------------+------------------------------------+
-; register_8bit:PC|q[7]                 ; Merged with register_8bit:PC2|q[7] ;
-; register_8bit:PC|q[6]                 ; Merged with register_8bit:PC2|q[6] ;
-; register_8bit:PC|q[5]                 ; Merged with register_8bit:PC2|q[5] ;
-; register_8bit:PC|q[4]                 ; Merged with register_8bit:PC2|q[4] ;
-; register_8bit:PC|q[3]                 ; Merged with register_8bit:PC2|q[3] ;
-; register_8bit:PC|q[2]                 ; Merged with register_8bit:PC2|q[2] ;
-; register_8bit:PC|q[1]                 ; Merged with register_8bit:PC2|q[1] ;
-; register_8bit:PC|q[0]                 ; Merged with register_8bit:PC2|q[0] ;
-; Total Number of Removed Registers = 8 ;                                    ;
-+---------------------------------------+------------------------------------+
++-----------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                          ;
++----------------------------------------+------------------------------------+
+; Register name                          ; Reason for Removal                 ;
++----------------------------------------+------------------------------------+
+; register_8bit:PC|q[7]                  ; Merged with register_8bit:PC2|q[7] ;
+; register_8bit:PC|q[6]                  ; Merged with register_8bit:PC2|q[6] ;
+; register_8bit:PC|q[5]                  ; Merged with register_8bit:PC2|q[5] ;
+; register_8bit:PC|q[4]                  ; Merged with register_8bit:PC2|q[4] ;
+; register_8bit:PC|q[3]                  ; Merged with register_8bit:PC2|q[3] ;
+; register_8bit:PC|q[2]                  ; Merged with register_8bit:PC2|q[2] ;
+; register_8bit:PC|q[1]                  ; Merged with register_8bit:PC2|q[1] ;
+; register_8bit:PC|q[0]                  ; Merged with register_8bit:PC2|q[0] ;
+; controller:Control|state~4             ; Lost fanout                        ;
+; controller:Control|state~5             ; Lost fanout                        ;
+; Total Number of Removed Registers = 10 ;                                    ;
++----------------------------------------+------------------------------------+
 
 
 +------------------------------------------------------+
@@ -354,10 +357,10 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 115   ;
+; Total registers                              ; 116   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 16    ;
-; Number of registers using Asynchronous Clear ; 115   ;
+; Number of registers using Asynchronous Clear ; 116   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 96    ;
 ; Number of registers using Preset             ; 0     ;
@@ -369,15 +372,15 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                             ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------+----------------------------+
-; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R2|q[2]      ;                            ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R1|q[6]      ;                            ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|mux3to1_8bit:ALU1_mux|Mux0 ;                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; |multicycle|controller:Control|AddrMux ;                            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R2|q[0]      ;                            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; |multicycle|register_8bit:R1|q[2]      ;                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; |multicycle|mux3to1_8bit:ALU1_mux|Mux3 ;                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; |multicycle|controller:Control|R2Mux   ;                            ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; |multicycle|mux5to1_8bit:ALU2_mux|Mux0 ;                            ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; |multicycle|mux5to1_8bit:ALU2_mux|Mux5 ;                            ;
-; 11:1               ; 4 bits    ; 28 LEs        ; 24 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[5]         ;                            ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|N                  ;                            ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[0]         ;                            ;
+; 11:1               ; 4 bits    ; 28 LEs        ; 24 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[2]         ;                            ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[6]         ;                            ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; |multicycle|ALU:ALU|tmp_out[1]         ;                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------+----------------------------+
 
 
@@ -551,7 +554,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 11.1 Build 259 01/25/2012 Service Pack 2.11 SJ Web Edition
-    Info: Processing started: Sun Nov 30 19:56:39 2014
+    Info: Processing started: Sun Nov 30 23:38:15 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off multicycle -c multicycle
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file memory.bdf
@@ -603,38 +606,38 @@ Info (12128): Elaborating entity "HEXs" for hierarchy "HEXs:HEX_display"
 Info (12128): Elaborating entity "HEX" for hierarchy "HEXs:HEX_display|HEX:hex0"
 Info (12128): Elaborating entity "mux2to1_8bit" for hierarchy "mux2to1_8bit:R1_mux"
 Info (12128): Elaborating entity "controller" for hierarchy "controller:Control"
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "R1Sel", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "R1R2Load", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "R1Mux", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "R2Mux", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "ALU2", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "ALU3", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "ALUop", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "WBWrite", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "ALU1", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "MemInMux", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "AddrMux", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "MemRead", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at controller.v(50): inferring latch(es) for variable "RegWriteWire", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "RegWriteWire[0]" at controller.v(50)
-Info (10041): Inferred latch for "RegWriteWire[1]" at controller.v(50)
-Info (10041): Inferred latch for "MemRead" at controller.v(50)
-Info (10041): Inferred latch for "AddrMux" at controller.v(50)
-Info (10041): Inferred latch for "MemInMux" at controller.v(50)
-Info (10041): Inferred latch for "ALU1[0]" at controller.v(50)
-Info (10041): Inferred latch for "ALU1[1]" at controller.v(50)
-Info (10041): Inferred latch for "WBWrite" at controller.v(50)
-Info (10041): Inferred latch for "ALUop[0]" at controller.v(50)
-Info (10041): Inferred latch for "ALUop[1]" at controller.v(50)
-Info (10041): Inferred latch for "ALUop[2]" at controller.v(50)
-Info (10041): Inferred latch for "ALU3" at controller.v(50)
-Info (10041): Inferred latch for "ALU2[0]" at controller.v(50)
-Info (10041): Inferred latch for "ALU2[1]" at controller.v(50)
-Info (10041): Inferred latch for "ALU2[2]" at controller.v(50)
-Info (10041): Inferred latch for "R2Mux" at controller.v(50)
-Info (10041): Inferred latch for "R1Mux" at controller.v(50)
-Info (10041): Inferred latch for "R1R2Load" at controller.v(50)
-Info (10041): Inferred latch for "R1Sel" at controller.v(50)
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "R1Sel", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "R1R2Load", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "R1Mux", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "R2Mux", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "ALU2", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "ALU3", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "ALUop", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "WBWrite", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "ALU1", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "MemInMux", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "AddrMux", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "MemRead", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(51): inferring latch(es) for variable "RegWriteWire", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "RegWriteWire[0]" at controller.v(51)
+Info (10041): Inferred latch for "RegWriteWire[1]" at controller.v(51)
+Info (10041): Inferred latch for "MemRead" at controller.v(51)
+Info (10041): Inferred latch for "AddrMux" at controller.v(51)
+Info (10041): Inferred latch for "MemInMux" at controller.v(51)
+Info (10041): Inferred latch for "ALU1[0]" at controller.v(51)
+Info (10041): Inferred latch for "ALU1[1]" at controller.v(51)
+Info (10041): Inferred latch for "WBWrite" at controller.v(51)
+Info (10041): Inferred latch for "ALUop[0]" at controller.v(51)
+Info (10041): Inferred latch for "ALUop[1]" at controller.v(51)
+Info (10041): Inferred latch for "ALUop[2]" at controller.v(51)
+Info (10041): Inferred latch for "ALU3" at controller.v(51)
+Info (10041): Inferred latch for "ALU2[0]" at controller.v(51)
+Info (10041): Inferred latch for "ALU2[1]" at controller.v(51)
+Info (10041): Inferred latch for "ALU2[2]" at controller.v(51)
+Info (10041): Inferred latch for "R2Mux" at controller.v(51)
+Info (10041): Inferred latch for "R1Mux" at controller.v(51)
+Info (10041): Inferred latch for "R1R2Load" at controller.v(51)
+Info (10041): Inferred latch for "R1Sel" at controller.v(51)
 Info (12128): Elaborating entity "memory" for hierarchy "memory:DataMem"
 Info (12128): Elaborating entity "DualMem" for hierarchy "memory:DataMem|DualMem:inst"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "memory:DataMem|DualMem:inst|altsyncram:altsyncram_component"
@@ -727,19 +730,22 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[11]" is stuck at GND
     Warning (13410): Pin "LEDR[15]" is stuck at VCC
     Warning (13410): Pin "LEDR[16]" is stuck at GND
+Info (17049): 2 registers lost all their fanouts during netlist optimizations. The first 2 are displayed below.
+    Info (17050): Register "controller:Control|state~4" lost all its fanouts during netlist optimizations.
+    Info (17050): Register "controller:Control|state~5" lost all its fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[0]"
     Warning (15610): No output dependent on input pin "SW[1]"
-Info (21057): Implemented 520 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 523 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 82 output pins
-    Info (21061): Implemented 425 logic cells
+    Info (21061): Implemented 428 logic cells
     Info (21064): Implemented 8 RAM segments
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 69 warnings
-    Info: Peak virtual memory: 333 megabytes
-    Info: Processing ended: Sun Nov 30 19:56:48 2014
-    Info: Elapsed time: 00:00:09
+    Info: Peak virtual memory: 331 megabytes
+    Info: Processing ended: Sun Nov 30 23:38:27 2014
+    Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:09
 
 
